@@ -67,6 +67,18 @@ public class ProbeAbilityTests
         => Assert.InRange(ProbeAbilityModel.ResolveMeat(name, target).Cut, 0, 28);
 
     [Fact]
+    public void EveryPreset_IsANameTheModelResolvesExactly()
+    {
+        Assert.NotEmpty(ProbeAbilityModel.Presets);
+        foreach (var (name, celsius) in ProbeAbilityModel.Presets)
+        {
+            Assert.InRange(celsius, 40, 100);
+            // A full preset name resolves on the name alone; only "Category Cut" consults the target.
+            Assert.Equal(ProbeAbilityModel.ResolveMeat(name, 10), ProbeAbilityModel.ResolveMeat(name, 99));
+        }
+    }
+
+    [Fact]
     public void TheGoldenVectorsCameFromTheModelThisBuildCarries()
         => Assert.Equal(ProbeAbilityModel.Source, Golden.RootElement.GetProperty("source").GetString());
 }

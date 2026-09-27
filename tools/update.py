@@ -69,6 +69,12 @@ def generate(pkg, source):
     for name, (cut_id, doneness) in mp._CUT_NAME_MAP.items():
         options = ", ".join(f"({cs_double(t)}, {codes(mp._encode(cut_id, d))})" for d, t in doneness)
         cut_names.append(f"[{cs_string(name)}] = [{options}],")
+    presets = []
+    for name, (cut_id, doneness) in mp._CUT_NAME_MAP.items():
+        for don, temp in doneness:
+            full = f"{name} {don.replace('_', ' ').title()}"
+            if full in mp._COOK_NAME_MAP:
+                presets.append(f"({cs_string(full)}, {cs_double(temp)}),")
     untargeted = indent.join(f"[{cs_string(n)}] = {codes(mp._encode(c, 'medium'))}," for n, (c, _) in mp._CUT_NAME_MAP.items())
     categories = []
     for name, cut_id in mp._CATEGORY_NAME_MAP.items():
@@ -144,6 +150,15 @@ public static partial class ProbeAbilityModel
     }};
 
     private static readonly (int, int, int, int, int) DefaultMeat = {codes(mp._DEFAULT_MEAT)};
+
+    /// <summary>
+    /// Every preset Probe-ability offers, as the name the model knows it by and its target in Celsius -
+    /// for a picker whose choice both sets a probe's target and tells the model what is cooking.
+    /// </summary>
+    public static readonly IReadOnlyList<(string Name, double Celsius)> Presets =
+    [
+        {indent.join(presets)}
+    ];
 
     /// <summary>The trained column order; <see cref="Features"/> fills it in this order.</summary>
     public static readonly string[] FeatureOrder = [{", ".join(cs_string(f) for f in mp._FEATURE_ORDER)}];

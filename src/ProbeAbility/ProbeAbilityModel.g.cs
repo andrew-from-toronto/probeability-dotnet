@@ -1163,6 +1163,57 @@ public static partial class ProbeAbilityModel
 
     private static readonly (int, int, int, int, int) DefaultMeat = (3, 5, 4, 12, 2);
 
+    /// <summary>
+    /// Every preset Probe-ability offers, as the name the model knows it by and its target in Celsius -
+    /// for a picker whose choice both sets a probe's target and tells the model what is cooking.
+    /// </summary>
+    public static readonly IReadOnlyList<(string Name, double Celsius)> Presets =
+    [
+        ("Beef Sirloin Rare", 50.0),
+        ("Beef Sirloin Medium Rare", 54.0),
+        ("Beef Sirloin Medium", 60.0),
+        ("Beef Sirloin Medium Well", 65.0),
+        ("Beef Sirloin Well Done", 71.0),
+        ("Beef Rib Eye Rare", 50.0),
+        ("Beef Rib Eye Medium Rare", 54.0),
+        ("Beef Rib Eye Medium", 60.0),
+        ("Beef Rib Eye Medium Well", 65.0),
+        ("Beef Rib Eye Well Done", 71.0),
+        ("Beef Brisket Fall Apart", 96.0),
+        ("Beef Burger Medium Rare", 55.0),
+        ("Beef Burger Medium", 60.0),
+        ("Beef Burger Medium Well", 65.0),
+        ("Beef Burger Well Done", 71.0),
+        ("Beef Roast Medium Rare", 57.0),
+        ("Beef Roast Medium", 60.0),
+        ("Beef Roast Well Done", 71.0),
+        ("Pork Loin / Chop Medium", 63.0),
+        ("Pork Loin / Chop Well Done", 71.0),
+        ("Pork Shoulder Pulled", 96.0),
+        ("Pork Belly Well Done", 75.0),
+        ("Pork Ribs Fall Apart", 93.0),
+        ("Poultry Chicken Breast Medium", 74.0),
+        ("Poultry Duck Breast Medium", 63.0),
+        ("Poultry Thigh / Leg Well Done", 82.0),
+        ("Poultry Whole Bird Well Done", 82.0),
+        ("Lamb Leg Rare", 52.0),
+        ("Lamb Leg Medium Rare", 57.0),
+        ("Lamb Leg Medium", 63.0),
+        ("Lamb Leg Well Done", 71.0),
+        ("Lamb Rump Rare", 52.0),
+        ("Lamb Rump Medium Rare", 57.0),
+        ("Lamb Rump Medium", 63.0),
+        ("Lamb Rump Well Done", 71.0),
+        ("Lamb Rack / Ribs Rare", 52.0),
+        ("Lamb Rack / Ribs Medium Rare", 57.0),
+        ("Lamb Rack / Ribs Medium", 63.0),
+        ("Lamb Shoulder Fall Apart", 85.0),
+        ("Other Fish / Salmon Medium Rare", 52.0),
+        ("Other Fish / Salmon Medium", 60.0),
+        ("Other Other Medium", 70.0),
+        ("Other Other Well Done", 75.0),
+    ];
+
     /// <summary>The trained column order; <see cref="Features"/> fills it in this order.</summary>
     public static readonly string[] FeatureOrder = ["T_internal_current", "T_ambient_current", "rate_initial", "rate_recent", "deceleration", "T_internal_start", "T_remaining", "elapsed_min", "T_ambient_mean_so_far", "T_ambient_std_so_far", "in_stall", "T_gap", "category_enc", "animal_enc", "cut_type_enc", "cut_enc", "preset_enc"];
 }
