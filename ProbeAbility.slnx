@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ProbeAbility/ProbeAbility.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/ProbeAbility.Tests/ProbeAbility.Tests.csproj" />
+  </Folder>
+</Solution>
